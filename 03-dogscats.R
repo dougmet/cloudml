@@ -19,7 +19,7 @@ job_list()
 
 job_collect("cloudml_2019_04_04_215301128") # cpu run ~ 5.5  hours ~ $1
 job_collect("cloudml_2019_04_04_224630201") # gpu run ~ 1.25 hours ~ $1
-job_collect("cloudml_2019_04_05_093958377") # p100    ~ 0.33 hours ~ $0.60 WINNER!
+job_collect("cloudml_2019_04_05_093958377") # p100    ~ 1    hours ~ $1.8
 
 view_run("cloudml_2019_04_04_224630201") 
 

@@ -13,6 +13,9 @@ job_list()
 
 job_collect("cloudml_2019_04_05_093043851") # gpu standard
 job_collect("cloudml_2019_04_05_094300772") # p100
+view_run("cloudml_2019_04_05_094300772") # p100
+
+# For everything I've measured P100 is not faster than K80
 
 model <- load_model_hdf5("runs/cloudml_2019_04_05_093043851/dogscats-pretrain.hdf5")
 
