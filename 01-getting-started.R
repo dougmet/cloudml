@@ -1,30 +1,33 @@
 library(here)
 library(cloudml)
 
+# Need to be in right directory to submit job
+# The here function anchors us to the project root
 setwd(here("01-getting-started"))
-getwd()
 
+# Submit a job
 cloudml_train("iris.R")
 
-# it's still setting up the environment after 30 minutes!
-
 job_list()
-## job_collect("cloudml_2019_03_26_204537248")
-job_collect() # latest
+# it's still setting up the environment after 30 minutes!
+job_collect()
 
 # Let's do it again and see how long it takes
 cloudml_train("iris.R")
 # Took 9 minutes this time
 
+# Collect a specific job
 job_collect("cloudml_2019_03_26_214758262")
 
+# Load in the hdf5 model that we saved
 model <- load_model_hdf5("runs/cloudml_2019_03_26_214758262/iris.hdf5")
 
+# it's a normal model!
 model
 
-get_weights(model)
 
-### Evaluate and predict model
+# Evaluate and predict model ----------------------------------------------
+
 
 model %>% 
   evaluate(xIris$test, yIris$test)
@@ -36,6 +39,8 @@ model %>%
 model %>%
   predict_classes(xIris$test) 
 
+
+# Deployment model --------------------------------------------------------
 
 library(tfdeploy)
 
