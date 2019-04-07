@@ -7,6 +7,7 @@ setwd(here("02-walking"))
 
 # Submit a job
 cloudml_train("walking.R")
+cloudml_train("walking.R", master_type = "standard_gpu")
 
 # Collect a specific job
 job_collect("cloudml_2019_03_26_214758262")

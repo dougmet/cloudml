@@ -39,5 +39,3 @@ history = model.fit(X_train_s,
                     validation_data = (X_test_s, y_test))
 
 model.save("iris_model_python.hdf5")
-
-
