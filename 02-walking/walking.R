@@ -28,7 +28,6 @@ model %>%
 model
 
 
-
 # Compile
 model %>%
   compile(loss = "categorical_crossentropy",

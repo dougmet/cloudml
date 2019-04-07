@@ -18,39 +18,3 @@ model <- load_model_hdf5("runs/cloudml_2019_03_26_214758262/iris.hdf5")
 
 # it's a normal model!
 model
-
-
-# Evaluate and predict model ----------------------------------------------
-
-
-model %>% 
-  evaluate(xIris$test, yIris$test)
-
-model %>% 
-  predict(xIris$test) %>%
-  head()
-
-model %>%
-  predict_classes(xIris$test) 
-
-
-# Deployment model --------------------------------------------------------
-
-library(tfdeploy)
-
-predict_savedmodel(xIris$test, "runs/cloudml_2019_03_26_214758262/savedmodel")
-
-
-# start session
-sess <- tensorflow::tf$Session()
-
-# preload an existing model into a TensorFlow session
-graph <- tfdeploy::load_savedmodel(sess, "runs/cloudml_2019_03_26_214758262/savedmodel")
-
-tfdeploy::predict_savedmodel(
-  c(-0.1, 1, -1, -1),
-  graph,
-  sess = sess
-)
-
-sess$close()
