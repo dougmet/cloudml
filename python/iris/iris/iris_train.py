@@ -49,5 +49,5 @@ model.save(model_filename)
 
 gcs_model_path = os.path.join('gs://', BUCKET_NAME,
     datetime.datetime.now().strftime('iris_%Y%m%d_%H%M%S'), model_filename)
-# subprocess.check_call(['gsutil', 'cp', model_filename, gcs_model_path],
-#     stderr=sys.stdout)
+subprocess.check_call(['gsutil', 'cp', model_filename, gcs_model_path],
+    stderr=sys.stdout)
