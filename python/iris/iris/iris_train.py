@@ -2,8 +2,13 @@
 """
 Let's train a thing
 """
+import datetime
+import os
+import subprocess
+import sys
 
-from sklearn.model_selection import train_test_split
+#from sklearn.model_selection import train_test_split
+from sklearn.cross_validation import train_test_split
 from sklearn.datasets import load_iris
 from sklearn.preprocessing import StandardScaler
 
@@ -11,6 +16,7 @@ from keras.utils import to_categorical
 from keras.models import Sequential
 from keras.layers import Dense
 
+BUCKET_NAME = 'keras-235720'
 
 iris = load_iris()
 
@@ -38,4 +44,10 @@ history = model.fit(X_train_s,
                     epochs = 100, 
                     validation_data = (X_test_s, y_test))
 
-model.save("iris_model_python.hdf5")
+model_filename = "iris_model_python.hdf5"
+model.save(model_filename)
+
+gcs_model_path = os.path.join('gs://', BUCKET_NAME,
+    datetime.datetime.now().strftime('iris_%Y%m%d_%H%M%S'), model_filename)
+# subprocess.check_call(['gsutil', 'cp', model_filename, gcs_model_path],
+#     stderr=sys.stdout)

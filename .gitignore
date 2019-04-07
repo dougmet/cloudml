@@ -7,3 +7,4 @@
 dogscats_small/
 python/cmle-env/
 python/cloudml-samples-master/
+*__pycache__/
