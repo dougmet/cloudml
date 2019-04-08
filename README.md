@@ -24,7 +24,6 @@ Over in your [GCP console](https://console.cloud.google.com) you'll want to eith
 
 Make sure you enable the 
 
-Inline-style: 
 ![Enable mlengine api](assets/img/enable-api.jpg "Enable the ML Engine API in GCP")
 
 
