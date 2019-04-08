@@ -1,3 +1,6 @@
+## Example recreated from Deep Learning in R - Manning
+## https://www.manning.com/books/deep-learning-with-r
+
 library(keras)
 library(cloudml)
 
