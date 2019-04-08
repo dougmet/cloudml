@@ -1,10 +1,11 @@
 library(keras)
 library(cloudml)
 
-#train_dir <- file.path("dogscats_small", "train")
-train_dir <- gs_data_dir_local("gs://rkeras-book174/dogscats_small/train")
-#validation_dir <- file.path("dogscats_small", "validation")
-validation_dir <- gs_data_dir_local("gs://rkeras-book174/dogscats_small/validation")
+bucket <- "dogscats_small"                       # for local
+bucket <- "gs://rkeras-book174/dogscats_small"   # for mlengine
+
+train_dir <- gs_data_dir_local(file.path(bucket, "train"))
+validation_dir <- gs_data_dir_local(file.path(bucket, "validation"))
 
 model <- keras_model_sequential() %>%
   layer_conv_2d(filters = 32, kernel_size = c(3, 3), activation = "relu",

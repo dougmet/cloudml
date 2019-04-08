@@ -19,6 +19,9 @@ cloudml_train("iris.R")
 # Collect a specific job
 job_collect("cloudml_2019_03_26_214758262")
 
+# Look at the history
+view_run("cloudml_2019_03_26_214758262")
+
 # Load in the hdf5 model that we saved
 model <- load_model_hdf5("runs/cloudml_2019_03_26_214758262/iris.hdf5")
 
