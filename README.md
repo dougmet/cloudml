@@ -22,9 +22,8 @@ See the [RStudio Setup guide](https://keras.rstudio.com/) for `keras`. I've alwa
 
 Over in your [GCP console](https://console.cloud.google.com) you'll want to either create a project, or choose an existing one.
 
-Make sure you enable the 
+Make sure you enable the ML engine API.
 
-Inline-style: 
 ![Enable mlengine api](assets/img/enable-api.jpg "Enable the ML Engine API in GCP")
 
 
