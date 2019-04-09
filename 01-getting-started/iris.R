@@ -12,37 +12,7 @@ data_split <- initial_split(iris, strata = "Species", prop = 0.8)
 fullData <- list(train = analysis(data_split), 
                  test = assessment(data_split))
 
-
-# Recipes
-
-empty_recipe <- recipe(Species ~ ., data = fullData$train)
-empty_recipe
-
-# One hot encode
-
-dummy_recipe <- empty_recipe %>%
-  step_dummy(Species, one_hot = TRUE, role = "outcome")
-
-
-dummy_recipe %>%
-  prep(fullData$train) %>%
-  bake(fullData$train, all_outcomes()) %>%
-  head()
-
-# Center and scale  
-
-scale_recipe <- empty_recipe %>%
-  step_center(all_predictors()) %>%
-  step_scale(all_predictors()) 
-
-scale_recipe %>%
-  prep(fullData$train) %>%
-  bake(fullData$train,
-       all_predictors()) %>%
-  head()
-
-
-# Put it all together and prep
+# Preprocessing
 
 iris_recipe <- recipe(Species ~ ., data = fullData$train) %>%
   step_dummy(Species, one_hot = TRUE, role = "outcome") %>%
@@ -67,11 +37,8 @@ yIris <- map(fullData, ~ bake(object = iris_recipe,
 
 ############# Building models
 
-model <- keras_model_sequential()
-
-## Add layers
-
 model %>%
+  keras_model_sequential() 
   layer_dense(units = 10, input_shape = 4) %>%
   layer_dense(units = 3, activation = 'softmax')
 
